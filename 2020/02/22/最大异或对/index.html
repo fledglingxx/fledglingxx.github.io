@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="模拟队列, 眼里有星星">
-    <meta name="description" content="题目实现一个队列，队列初始为空，支持四种操作：(1) “push x” – 向队尾插入一个数x；(2) “pop” – 从队头弹出一个数；(3) “empty” – 判断队列是否为空；(4) “query” – 查询队头元素。现在要对队列进">
+    <meta name="keywords" content="最大异或对, 眼里有星星">
+    <meta name="description" content="题目在给定的N个整数A1，A2……AN中选出两个进行xor（异或）运算，得到的结果最大是多少？输入格式第一行输入一个整数N。第二行输入N个整数A1～AN。输出格式输出一个整数表示答案。数据范围1≤N≤105,0≤Ai&amp;lt;231输入样例：">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>模拟队列 | 眼里有星星</title>
+    <title>最大异或对 | 眼里有星星</title>
     <link rel="icon" type="image/png" href="/blog.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">模拟队列</h1>
+                    <h1 class="description center-align post-title">最大异或对</h1>
                 </div>
             </div>
         </div>
@@ -425,12 +425,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E9%98%9F%E5%88%97/">
-                                <span class="chip bg-color">队列</span>
-                            </a>
-                        
-                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                <span class="chip bg-color">模板</span>
+                            <a href="/tags/Trie%E6%A0%91/">
+                                <span class="chip bg-color">Trie树</span>
                             </a>
                         
                     </div>
@@ -462,52 +458,54 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>实现一个队列，队列初始为空，支持四种操作：<br>(1) “push x” – 向队尾插入一个数x；<br>(2) “pop” – 从队头弹出一个数；<br>(3) “empty” – 判断队列是否为空；<br>(4) “query” – 查询队头元素。<br>现在要对队列进行M个操作，其中的每个操作3和操作4都要输出相应的结果。<br>输入格式<br>第一行包含整数M，表示操作次数。<br>接下来M行，每行包含一个操作命令，操作命令为”push x”，”pop”，”empty”，”query”中的一种。<br>输出格式<br>对于每个”empty”和”query”操作都要输出一个查询结果，每个结果占一行。<br>其中，”empty”操作的查询结果为“YES”或“NO”，”query”操作的查询结果为一个整数，表示队头元素的值。<br>数据范围<br>1≤M≤100000,1≤x≤109,所有操作保证合法。<br>输入样例：<br>10<br>push 6<br>empty<br>query<br>pop<br>empty<br>push 3<br>push 4<br>pop<br>query<br>push 6<br>输出样例：<br>NO<br>6<br>YES<br>4</p>
-<p>4</p>
-<p><img src="https://img-blog.csdnimg.cn/20200213231944871.png" alt=""></p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
+                <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>在给定的N个整数A1，A2……AN中选出两个进行xor（异或）运算，得到的结果最大是多少？<br>输入格式<br>第一行输入一个整数N。<br>第二行输入N个整数A1～AN。<br>输出格式<br>输出一个整数表示答案。<br>数据范围<br>1≤N≤105,0≤Ai&lt;231<br>输入样例：<br>3<br>1 2 3<br>输出样例：<br>3</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>异或也叫不进位加法。可以把每个数转换为31的二进制数，如果想要异或和最大，首先要先从高位考虑，如果找a的异或和，先要从高位找哪一个数的数位与a的相反，如果a的最高位是0，那就要找最高位是1的，如果没有就看次高位，然后依次一位一位的比较下去，最后可以发现其实是一个0 1二叉树</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;algorithm></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> aa<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> hh<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>tt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token keyword">void</span> <span class="token function">queue_push</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//向队列里加入元素，是要在队尾加入</span>
-    aa<span class="token punctuation">[</span>tt<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>x<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">queue_pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//因为队列是先进先出，所以要hh++</span>
-    hh<span class="token operator">++</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">queue_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> <span class="token keyword">int</span> N<span class="token operator">=</span><span class="token number">100009</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> aa<span class="token punctuation">[</span>N<span class="token punctuation">]</span><span class="token punctuation">,</span>trie<span class="token punctuation">[</span><span class="token number">31</span><span class="token operator">*</span>N<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>idx<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">insert</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>hh<span class="token operator">>=</span>tt<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"YES"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    <span class="token keyword">else</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"NO"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">;</span>i<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token operator">=</span>x<span class="token operator">>></span>i<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span> trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token operator">=</span><span class="token operator">++</span>idx<span class="token punctuation">;</span>
+        p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-<span class="token keyword">void</span> <span class="token function">queue_query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//输出队头</span>
-    cout<span class="token operator">&lt;&lt;</span>aa<span class="token punctuation">[</span>hh<span class="token punctuation">]</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+
+<span class="token keyword">int</span> <span class="token function">query</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">int</span> p<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">;</span>i<span class="token operator">>=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">int</span> u<span class="token operator">=</span>x<span class="token operator">>></span>i<span class="token operator">&amp;</span><span class="token number">1</span><span class="token punctuation">;</span>  <span class="token comment" spellcheck="true">//判断第i位的数是0还是1</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">!</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token comment" spellcheck="true">//如果trie树中存储了！u，那么异或之后就是 1，res加上就行 </span>
+        <span class="token punctuation">{</span>
+            res<span class="token operator">+</span><span class="token operator">=</span><span class="token number">1</span><span class="token operator">&lt;&lt;</span>i<span class="token punctuation">;</span>
+            p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token operator">!</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span>    p<span class="token operator">=</span>trie<span class="token punctuation">[</span>p<span class="token punctuation">]</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//如果没有！u，那么异或之后就是0，就没必要加</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
+
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span><span class="token keyword">int</span> ans<span class="token operator">=</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
     cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>  cin<span class="token operator">>></span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-        string s<span class="token punctuation">;</span>
-        cin<span class="token operator">>></span>s<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"push"</span><span class="token punctuation">)</span> 
-        <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> x<span class="token punctuation">;</span>
-            cin<span class="token operator">>></span>x<span class="token punctuation">;</span>
-            <span class="token function">queue_push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"pop"</span><span class="token punctuation">)</span> <span class="token function">queue_pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"empty"</span><span class="token punctuation">)</span> <span class="token function">queue_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"query"</span><span class="token punctuation">)</span> <span class="token function">queue_query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">insert</span><span class="token punctuation">(</span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ans<span class="token operator">=</span><span class="token function">max</span><span class="token punctuation">(</span>ans<span class="token punctuation">,</span><span class="token function">query</span><span class="token punctuation">(</span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+    cout<span class="token operator">&lt;&lt;</span>ans<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-​```</code></pre>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -533,7 +531,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yousite.com/2020/02/22/%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/">http://yousite.com/2020/02/22/%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/</a>
+                    <a href="http://yousite.com/2020/02/22/%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%AF%B9/">http://yousite.com/2020/02/22/%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%AF%B9/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -571,12 +569,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E9%98%9F%E5%88%97/">
-                                    <span class="chip bg-color">队列</span>
-                                </a>
-                            
-                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                                    <span class="chip bg-color">模板</span>
+                                <a href="/tags/Trie%E6%A0%91/">
+                                    <span class="chip bg-color">Trie树</span>
                                 </a>
                             
                         </div>
@@ -742,9 +736,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
                 <a href="/2020/02/22/%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%AF%B9/">
                     <div class="card-image">
@@ -762,9 +757,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -773,6 +768,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -791,19 +787,19 @@
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/22/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+                <a href="/2020/02/22/%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="堆排序">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="模拟队列">
                         
-                        <span class="card-title">堆排序</span>
+                        <span class="card-title">模拟队列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目输入一个长度为n的整数数列，从小到大输出前m小的数。输入格式第一行包含整数n和m。第二行包含n个整数，表示整数数列。输出格式共一行，包含m个整数，表示整数数列中前m小的数。数据范围1≤m≤n≤10 ^ 5，1≤数列中元素≤10 ^ 9输
+                            题目实现一个队列，队列初始为空，支持四种操作：(1) “push x” – 向队尾插入一个数x；(2) “pop” – 从队头弹出一个数；(3) “empty” – 判断队列是否为空；(4) “query” – 查询队头元素。现在要对队列进
                         
                     </div>
                     <div class="publish-info">
@@ -821,12 +817,12 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                        <span class="chip bg-color">模板</span>
+                    <a href="/tags/%E9%98%9F%E5%88%97/">
+                        <span class="chip bg-color">队列</span>
                     </a>
                     
-                    <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">堆排序</span>
+                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">模板</span>
                     </a>
                     
                 </div>
