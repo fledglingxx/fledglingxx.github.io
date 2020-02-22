@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="用程序表示log,ln函数, 眼里有星星">
-    <meta name="description" content="今天听到一句话说 1 到 n 中质数的个数是 n /ln(n)；然后就想怎么用程序算出ln(n)的值。exp(1)是自然底数e。log是以e为底数的。
-#include&amp;lt;iostream&gt;
-#include&amp;lt;cmath&gt;
-usi">
+    <meta name="keywords" content="数组元素的目标和, 眼里有星星">
+    <meta name="description" content="题目给定两个升序排序的有序数组A和B，以及一个目标值x。数组下标从0开始。请你求出满足A[i] + B[j] = x的数对(i, j)。数据保证有唯一解。
+输入格式第一行包含三个整数n，m，x，分别表示A的长度，B的长度以及目标值x。第二行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +14,7 @@ usi">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>用程序表示log,ln函数 | 眼里有星星</title>
+    <title>数组元素的目标和 | 眼里有星星</title>
     <link rel="icon" type="image/png" href="/blog.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +304,12 @@ usi">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">用程序表示log,ln函数</h1>
+                    <h1 class="description center-align post-title">数组元素的目标和</h1>
                 </div>
             </div>
         </div>
@@ -428,8 +426,8 @@ usi">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/c/">
-                                <span class="chip bg-color">c++</span>
+                            <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                                <span class="chip bg-color">双指针</span>
                             </a>
                         
                     </div>
@@ -440,8 +438,8 @@ usi">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/c/" class="post-category">
-                                c++
+                            <a href="/categories/%E5%8F%8C%E6%8C%87%E9%92%88/" class="post-category">
+                                双指针
                             </a>
                         
                     </div>
@@ -470,18 +468,30 @@ usi">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今天听到一句话说 1 到 n 中质数的个数是 n /ln(n)；<br>然后就想怎么用程序算出ln(n)的值。<br>exp(1)是自然底数e。log是以e为底数的。</p>
-<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cmath></span></span>
+                <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定两个升序排序的有序数组A和B，以及一个目标值x。数组下标从0开始。<br>请你求出满足A[i] + B[j] = x的数对(i, j)。<br>数据保证有唯一解。</p>
+<p>输入格式<br>第一行包含三个整数n，m，x，分别表示A的长度，B的长度以及目标值x。<br>第二行包含n个整数，表示数组A。<br>第三行包含m个整数，表示数组B。</p>
+<p>输出格式<br>共一行，包含两个整数 i 和 j。</p>
+<p>数据范围<br>数组长度不超过100000。<br>同一数组内元素各不相同。<br>1≤数组元素≤109</p>
+<p>输入样例：<br>4 5 6<br>1 2 4 7<br>3 4 6 8 9<br>输出样例：<br>1 1</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>因为题意说数据保证有唯一解，所以可以用双指针来进行优化<br>之前一直觉得时间复杂度是O(n^2)，但仔细看看时间复杂度是O(2n)，也就是O(n)的，因为 j 指针是不会往回走的，i 也是不会往回走的，所以其实是O(2n)；</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;algorithm></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> aa<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> bb<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">log2</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">log10</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">,</span>x<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token operator">>></span>x<span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>  cin<span class="token operator">>></span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>  cin<span class="token operator">>></span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>j<span class="token operator">=</span>m<span class="token number">-1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        <span class="token keyword">while</span><span class="token punctuation">(</span>j<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>bb<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">></span>x<span class="token punctuation">)</span> j<span class="token operator">--</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>j<span class="token operator">>=</span><span class="token number">0</span><span class="token operator">&amp;&amp;</span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>bb<span class="token punctuation">[</span>j<span class="token punctuation">]</span><span class="token operator">==</span>x<span class="token punctuation">)</span>  cout<span class="token operator">&lt;&lt;</span>i<span class="token operator">&lt;&lt;</span><span class="token string">" "</span><span class="token operator">&lt;&lt;</span>j<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span> </code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2020021521430632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDgyODEwNw==,size_16,color_FFFFFF,t_70" alt=""></p>
+<span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -507,7 +517,7 @@ usi">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/2020/0222undefined.html">http://yoursite.com/2020/0222undefined.html</a>
+                    <a href="http://yoursite.com/article/54880.html">http://yoursite.com/article/54880.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -545,8 +555,8 @@ usi">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/c/">
-                                    <span class="chip bg-color">c++</span>
+                                <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                                    <span class="chip bg-color">双指针</span>
                                 </a>
                             
                         </div>
@@ -716,19 +726,20 @@ usi">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/0222undefined.html">
+                <a href="/article/7263.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="堆排序">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="最长连续不重复子序列">
                         
-                        <span class="card-title">堆排序</span>
+                        <span class="card-title">最长连续不重复子序列</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目输入一个长度为n的整数数列，从小到大输出前m小的数。输入格式第一行包含整数n和m。第二行包含n个整数，表示整数数列。输出格式共一行，包含m个整数，表示整数数列中前m小的数。数据范围1≤m≤n≤10 ^ 5，1≤数列中元素≤10 ^ 9输
+                            题目给定一个长度为n的整数序列，请找出最长的不包含重复数字的连续区间，输出它的长度。
+输入格式第一行包含整数n。第二行包含n个整数（均在0~100000范围内），表示整数序列。输出格式共一行，包含一个整数，表示最长的不包含重复数字的连续子序
                         
                     </div>
                     <div class="publish-info">
@@ -739,8 +750,8 @@ usi">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%A0%86/" class="post-category">
-                                    堆
+                            <a href="/categories/%E5%8F%8C%E6%8C%87%E9%92%88/" class="post-category">
+                                    双指针
                                 </a>
                             
                             
@@ -750,12 +761,8 @@ usi">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                        <span class="chip bg-color">模板</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%A0%86%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">堆排序</span>
+                    <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                        <span class="chip bg-color">双指针</span>
                     </a>
                     
                 </div>
@@ -769,32 +776,45 @@ usi">
                 Next&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/0217undefined.html">
+                <a href="/article/36060.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="区间和">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">区间和</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
+                            题目假定有一个无限长的数轴，数轴上每个坐标上的数都是0。现在，我们首先进行 n 次操作，每次操作将某一位置x上的数加c。接下来，进行 m 次询问，每个询问包含两个整数l和r，你需要求出在区间[l, r]之间的所有数的和。
+输入格式第一行包含
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            眼里有星星
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%A6%BB%E6%95%A3%E5%8C%96/" class="post-category">
+                                    离散化
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
+                        <span class="chip bg-color">离散化</span>
+                    </a>
+                    
                 </div>
                 
             </div>
