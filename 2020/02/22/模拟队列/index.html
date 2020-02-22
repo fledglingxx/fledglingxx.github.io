@@ -4,11 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="用程序表示log,ln函数, 眼里有星星">
-    <meta name="description" content="今天听到一句话说 1 到 n 中质数的个数是 n /ln(n)；然后就想怎么用程序算出ln(n)的值。exp(1)是自然底数e。log是以e为底数的。
-#include&amp;lt;iostream&gt;
-#include&amp;lt;cmath&gt;
-usi">
+    <meta name="keywords" content="模拟队列, 眼里有星星">
+    <meta name="description" content="题目实现一个队列，队列初始为空，支持四种操作：(1) “push x” – 向队尾插入一个数x；(2) “pop” – 从队头弹出一个数；(3) “empty” – 判断队列是否为空；(4) “query” – 查询队头元素。现在要对队列进">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +13,7 @@ usi">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>用程序表示log,ln函数 | 眼里有星星</title>
+    <title>模拟队列 | 眼里有星星</title>
     <link rel="icon" type="image/png" href="/blog.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,12 +303,12 @@ usi">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">用程序表示log,ln函数</h1>
+                    <h1 class="description center-align post-title">模拟队列</h1>
                 </div>
             </div>
         </div>
@@ -428,8 +425,12 @@ usi">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/c/">
-                                <span class="chip bg-color">c++</span>
+                            <a href="/tags/%E9%98%9F%E5%88%97/">
+                                <span class="chip bg-color">队列</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                <span class="chip bg-color">模板</span>
                             </a>
                         
                     </div>
@@ -461,18 +462,52 @@ usi">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>今天听到一句话说 1 到 n 中质数的个数是 n /ln(n)；<br>然后就想怎么用程序算出ln(n)的值。<br>exp(1)是自然底数e。log是以e为底数的。</p>
+                <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>实现一个队列，队列初始为空，支持四种操作：<br>(1) “push x” – 向队尾插入一个数x；<br>(2) “pop” – 从队头弹出一个数；<br>(3) “empty” – 判断队列是否为空；<br>(4) “query” – 查询队头元素。<br>现在要对队列进行M个操作，其中的每个操作3和操作4都要输出相应的结果。<br>输入格式<br>第一行包含整数M，表示操作次数。<br>接下来M行，每行包含一个操作命令，操作命令为”push x”，”pop”，”empty”，”query”中的一种。<br>输出格式<br>对于每个”empty”和”query”操作都要输出一个查询结果，每个结果占一行。<br>其中，”empty”操作的查询结果为“YES”或“NO”，”query”操作的查询结果为一个整数，表示队头元素的值。<br>数据范围<br>1≤M≤100000,1≤x≤109,所有操作保证合法。<br>输入样例：<br>10<br>push 6<br>empty<br>query<br>pop<br>empty<br>push 3<br>push 4<br>pop<br>query<br>push 6<br>输出样例：<br>NO<br>6<br>YES<br>4</p>
+<p>4</p>
+<p><img src="https://img-blog.csdnimg.cn/20200213231944871.png" alt=""></p>
 <pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;cmath></span></span>
+<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;algorithm></span></span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">int</span> aa<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> hh<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span>tt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> <span class="token function">queue_push</span><span class="token punctuation">(</span><span class="token keyword">int</span> x<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//向队列里加入元素，是要在队尾加入</span>
+    aa<span class="token punctuation">[</span>tt<span class="token operator">++</span><span class="token punctuation">]</span><span class="token operator">=</span>x<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">queue_pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span> <span class="token comment" spellcheck="true">//因为队列是先进先出，所以要hh++</span>
+    hh<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">queue_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>hh<span class="token operator">>=</span>tt<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"YES"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">else</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"NO"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">void</span> <span class="token function">queue_query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>  <span class="token comment" spellcheck="true">//输出队头</span>
+    cout<span class="token operator">&lt;&lt;</span>aa<span class="token punctuation">[</span>hh<span class="token punctuation">]</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">log2</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">exp</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    cout<span class="token operator">&lt;&lt;</span><span class="token function">log10</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
+    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token operator">--</span><span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        string s<span class="token punctuation">;</span>
+        cin<span class="token operator">>></span>s<span class="token punctuation">;</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"push"</span><span class="token punctuation">)</span> 
+        <span class="token punctuation">{</span>
+            <span class="token keyword">int</span> x<span class="token punctuation">;</span>
+            cin<span class="token operator">>></span>x<span class="token punctuation">;</span>
+            <span class="token function">queue_push</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"pop"</span><span class="token punctuation">)</span> <span class="token function">queue_pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"empty"</span><span class="token punctuation">)</span> <span class="token function">queue_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"query"</span><span class="token punctuation">)</span> <span class="token function">queue_query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
- <span class="token punctuation">}</span> </code></pre>
-<p><img src="https://img-blog.csdnimg.cn/2020021521430632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NDgyODEwNw==,size_16,color_FFFFFF,t_70" alt=""></p>
+<span class="token punctuation">}</span>
+​```</code></pre>
 
             </div>
             <hr/>
@@ -498,7 +533,7 @@ usi">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yousite.com/2020/02/22/%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%A1%A8%E7%A4%BAlog-ln%E5%87%BD%E6%95%B0/">http://yousite.com/2020/02/22/%E7%94%A8%E7%A8%8B%E5%BA%8F%E8%A1%A8%E7%A4%BAlog-ln%E5%87%BD%E6%95%B0/</a>
+                    <a href="http://yousite.com/2020/02/22/%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/">http://yousite.com/2020/02/22/%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -536,8 +571,12 @@ usi">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/c/">
-                                    <span class="chip bg-color">c++</span>
+                                <a href="/tags/%E9%98%9F%E5%88%97/">
+                                    <span class="chip bg-color">队列</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                                    <span class="chip bg-color">模板</span>
                                 </a>
                             
                         </div>
@@ -703,9 +742,60 @@ usi">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
+            <div class="card">
+                <a href="/2020/02/22/%E6%A8%A1%E6%8B%9F%E9%98%9F%E5%88%97/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="模拟队列">
+                        
+                        <span class="card-title">模拟队列</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            题目实现一个队列，队列初始为空，支持四种操作：(1) “push x” – 向队尾插入一个数x；(2) “pop” – 从队头弹出一个数；(3) “empty” – 判断队列是否为空；(4) “query” – 查询队头元素。现在要对队列进
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            眼里有星星
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%98%9F%E5%88%97/">
+                        <span class="chip bg-color">队列</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                        <span class="chip bg-color">模板</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2020/02/22/%E5%A0%86%E6%8E%92%E5%BA%8F/">
                     <div class="card-image">
@@ -723,9 +813,9 @@ usi">
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -745,43 +835,6 @@ usi">
                         <span class="chip bg-color">堆排序</span>
                     </a>
                     
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2020/02/17/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-17
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            眼里有星星
-                            
-                        </span>
-                    </div>
                 </div>
                 
             </div>
