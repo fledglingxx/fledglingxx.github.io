@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="模拟栈, 眼里有星星">
-    <meta name="description" content="题目实现一个栈，栈初始为空，支持四种操作：(1) “push x” – 向栈顶插入一个数x；(2) “pop” – 从栈顶弹出一个数；(3) “empty” – 判断栈是否为空；(4) “query” – 查询栈顶元素。现在要对栈进行M个操">
+    <meta name="keywords" content="Hello World, 眼里有星星">
+    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>模拟栈 | 眼里有星星</title>
+    <title>Hello World | 眼里有星星</title>
     <link rel="icon" type="image/png" href="/blog.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,12 +303,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">模拟栈</h1>
+                    <h1 class="description center-align post-title">Hello World</h1>
                 </div>
             </div>
         </div>
@@ -423,25 +423,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/%E6%A0%88/">
-                                <span class="chip bg-color">栈</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">No tag</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/%E6%A0%88/" class="post-category">
-                                栈
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -450,7 +437,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>Publish Date:&nbsp;&nbsp;
-                    2020-02-22
+                    2020-02-17
                 </div>
                 
 
@@ -467,55 +454,15 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>实现一个栈，栈初始为空，支持四种操作：<br>(1) “push x” – 向栈顶插入一个数x；<br>(2) “pop” – 从栈顶弹出一个数；<br>(3) “empty” – 判断栈是否为空；<br>(4) “query” – 查询栈顶元素。<br>现在要对栈进行M个操作，其中的每个操作3和操作4都要输出相应的结果。<br>输入格式<br>第一行包含整数M，表示操作次数。<br>接下来M行，每行包含一个操作命令，操作命令为”push x”，”pop”，”empty”，”query”中的一种。<br>输出格式<br>对于每个”empty”和”query”操作都要输出一个查询结果，每个结果占一行。<br>其中，”empty”操作的查询结果为“YES”或“NO”，”query”操作的查询结果为一个整数，表示栈顶元素的值。<br>数据范围<br>1≤M≤100000,1≤x≤109<br>所有操作保证合法。<br>输入样例：<br>10<br>push 5<br>query<br>push 6<br>pop<br>query<br>pop<br>empty<br>push 4<br>query<br>empty<br>输出样例：<br>5<br>5<br>YES<br>4<br>NO</p>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>C++有STL库，里面有stack，可以直接调用，这里时用数组模拟栈的过程，数组模拟栈的优点是比较快</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
-<span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;algorithm></span></span>
-<span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
-<span class="token keyword">int</span> ss<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
-<span class="token keyword">int</span> tt<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-
-<span class="token keyword">void</span> <span class="token function">stack_push</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    ss<span class="token punctuation">[</span><span class="token operator">++</span>tt<span class="token punctuation">]</span><span class="token operator">=</span>a<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">stack_query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    cout<span class="token operator">&lt;&lt;</span>ss<span class="token punctuation">[</span>tt<span class="token punctuation">]</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">stack_pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    tt<span class="token operator">--</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">void</span> <span class="token function">stack_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">if</span><span class="token punctuation">(</span>tt<span class="token punctuation">)</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"NO"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-    <span class="token keyword">else</span> cout<span class="token operator">&lt;&lt;</span><span class="token string">"YES"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-
-<span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">{</span>
-    <span class="token keyword">int</span> n<span class="token punctuation">;</span>
-    cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
-    <span class="token keyword">while</span><span class="token punctuation">(</span>n<span class="token operator">--</span><span class="token punctuation">)</span>
-    <span class="token punctuation">{</span>
-        string s<span class="token punctuation">;</span>
-        cin<span class="token operator">>></span>s<span class="token punctuation">;</span>
-        <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"push"</span><span class="token punctuation">)</span>  
-        <span class="token punctuation">{</span>
-            <span class="token keyword">int</span> a<span class="token punctuation">;</span>
-            cin<span class="token operator">>></span>a<span class="token punctuation">;</span>
-            <span class="token function">stack_push</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"query"</span><span class="token punctuation">)</span> <span class="token function">stack_query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"pop"</span><span class="token punctuation">)</span>  <span class="token function">stack_pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>s<span class="token operator">==</span><span class="token string">"empty"</span><span class="token punctuation">)</span> <span class="token function">stack_empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span></code></pre>
+                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class=" language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span></code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class=" language-bash"><code class="language-bash">$ hexo server</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class=" language-bash"><code class="language-bash">$ hexo generate</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class=" language-bash"><code class="language-bash">$ hexo deploy</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
             </div>
             <hr/>
@@ -531,7 +478,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yousite.com" rel="external nofollow noreferrer">眼里有星星</a>
+                    <a href="http://yoursite.com" rel="external nofollow noreferrer">眼里有星星</a>
                 </span>
             </div>
             <div class="reprint__type">
@@ -541,7 +488,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yousite.com/2020/02/22/%E6%A8%A1%E6%8B%9F%E6%A0%88/">http://yousite.com/2020/02/22/%E6%A8%A1%E6%8B%9F%E6%A0%88/</a>
+                    <a href="http://yoursite.com/2020/0217undefined.html">http://yoursite.com/2020/0217undefined.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -554,7 +501,7 @@
                     All articles in this blog are used except for special statements
                     <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
                     reprint polocy. If reproduced, please indicate source
-                    <a href="http://yousite.com" target="_blank">眼里有星星</a>
+                    <a href="http://yoursite.com" target="_blank">眼里有星星</a>
                     !
                 </span>
             </div>
@@ -578,11 +525,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/%E6%A0%88/">
-                                    <span class="chip bg-color">栈</span>
-                                </a>
-                            
+                            <span class="chip bg-color">No tag</span>
                         </div>
                     
                 </div>
@@ -750,21 +693,22 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
             <div class="card">
-                <a href="/2020/02/22/%E6%A8%A1%E6%8B%9F%E6%95%A3%E5%88%97%E8%A1%A8/">
+                <a href="/2020/0222undefined.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="模拟散列表">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="用程序表示log,ln函数">
                         
-                        <span class="card-title">模拟散列表</span>
+                        <span class="card-title">用程序表示log,ln函数</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目维护一个集合，支持如下几种操作：
-“I x”，插入一个数x；
-“Q x”，询问数x是否在集合中出现过；现在要进行N次操作，对于每个询问操作输出对应的结果。输入格式第一行包含整数N，表示操作数量。接下来N行，每行包含一个操作指令，操作指令
+                            今天听到一句话说 1 到 n 中质数的个数是 n /ln(n)；然后就想怎么用程序算出ln(n)的值。exp(1)是自然底数e。log是以e为底数的。
+#include&lt;iostream>
+#include&lt;cmath>
+usi
                         
                     </div>
                     <div class="publish-info">
@@ -775,8 +719,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%93%88%E5%B8%8C/" class="post-category">
-                                    哈希
+                            <a href="/categories/c/" class="post-category">
+                                    c++
                                 </a>
                             
                             
@@ -786,8 +730,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%93%88%E5%B8%8C/">
-                        <span class="chip bg-color">哈希</span>
+                    <a href="/tags/c/">
+                        <span class="chip bg-color">c++</span>
                     </a>
                     
                 </div>
@@ -798,54 +742,37 @@
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
+                Current&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2020/02/22/%E5%90%88%E5%B9%B6%E9%9B%86%E5%90%88/">
+                <a href="/2020/0217undefined.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="合并集合">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
                         
-                        <span class="card-title">合并集合</span>
+                        <span class="card-title">Hello World</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目一共有n个数，编号是1~n，最开始每个数各自在一个集合中。现在要进行m个操作，操作共有两种：
-“M a b”，将编号为a和b的两个数所在的集合合并，如果两个数已经在同一个集合中，则忽略这个操作；
-“Q a b”，询问编号为a和b的两个数
+                            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hex
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-22
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-17
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%B9%B6%E6%9F%A5%E9%9B%86/" class="post-category">
-                                    并查集
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            眼里有星星
                             
                         </span>
                     </div>
                 </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                        <span class="chip bg-color">模板</span>
-                    </a>
-                    
-                    <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
-                        <span class="chip bg-color">并查集</span>
-                    </a>
-                    
-                </div>
+
                 
             </div>
         </div>
@@ -1013,7 +940,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             <span id="year">2019</span>
-            <a href="http://yousite.com" target="_blank">眼里有星星</a>
+            <a href="http://yoursite.com" target="_blank">眼里有星星</a>
             |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
             |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
             <br>
