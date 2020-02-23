@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="递增三元组, 眼里有星星">
-    <meta name="description" content="题目给定三个整数数组A=[A1,A2,…AN],B=[B1,B2,…BN],C=[C1,C2,…CN],请你统计有多少个三元组 (i,j,k)满足：    1≤i,j,k≤N，Ai&amp;lt;Bj&amp;lt;Ck输入格式第一行包含一个整数 N。第二">
+    <meta name="keywords" content="K倍区间, 眼里有星星">
+    <meta name="description" content="给定一个长度为 N 的数列，A1,A2,…AN，如果其中一段连续的子序列 Ai,Ai+1,…Aj 之和是 K 的倍数，我们就称这个区间 [i,j] 是 K倍区间。你能求出数列中总共有多少个 K倍区间吗？输入格式第一行包含两个整数 N和 K。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>递增三元组 | 眼里有星星</title>
+    <title>K倍区间 | 眼里有星星</title>
     <link rel="icon" type="image/png" href="/blog.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -281,12 +281,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/142.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/82.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">递增三元组</h1>
+                    <h1 class="description center-align post-title">K倍区间</h1>
                 </div>
             </div>
         </div>
@@ -445,29 +445,26 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h5 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h5><p>给定三个整数数组A=[A1,A2,…AN],B=[B1,B2,…BN],C=[C1,C2,…CN],<br>请你统计有多少个三元组 (i,j,k)满足：    1≤i,j,k≤N，Ai&lt;Bj&lt;Ck<br>输入格式<br>第一行包含一个整数 N。<br>第二行包含 N个整数 A1,A2,…AN。<br>第三行包含 N个整数 B1,B2,…BN。<br>第四行包含 N个整数 C1,C2,…CN。<br>输出格式<br>一个整数表示答案。<br>数据范围<br>1≤N≤105,0≤Ai,Bi,Ci≤105<br>输入样例：<br>3<br>1 1 1<br>2 2 2<br>3 3 3<br>输出样例：<br>27</p>
-<h5 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h5><p>之前一直以为要满足i&lt;=j&lt;=k这个条件，然后一直在纠结怎么满足这个条件，，，<br>可是后来发现并不需要满足，所以可以直接排序，然后遍历b数组就行，记得要用long long保存结果</p>
-<h5 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h5><pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
+                <p>给定一个长度为 N 的数列，A1,A2,…AN，如果其中一段连续的子序列 Ai,Ai+1,…Aj 之和是 K 的倍数，我们就称这个区间 [i,j] 是 K倍区间。<br>你能求出数列中总共有多少个 K倍区间吗？<br>输入格式<br>第一行包含两个整数 N和 K。<br>以下 N行每行包含一个整数 Ai。<br>输出格式<br>输出一个整数，代表 K倍区间的数目。<br>数据范围<br>1≤N,K≤100000,1≤Ai≤100000<br>输入样例：<br>5 2<br>1<br>2<br>3<br>4<br>5<br>输出样例：<br>6</p>
+<pre class=" language-cpp"><code class="language-cpp"><span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;iostream></span></span>
 <span class="token macro property">#<span class="token directive keyword">include</span><span class="token string">&lt;algorithm></span></span>
-<span class="token keyword">long</span> <span class="token keyword">long</span> n<span class="token punctuation">,</span>aa<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">,</span>bb<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">,</span>cc<span class="token punctuation">[</span><span class="token number">123456</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">using</span> <span class="token keyword">namespace</span> std<span class="token punctuation">;</span>
+<span class="token keyword">long</span> <span class="token keyword">long</span> aa<span class="token punctuation">[</span><span class="token number">1234567</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">long</span> <span class="token keyword">long</span> ss<span class="token punctuation">[</span><span class="token number">1234567</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> n<span class="token punctuation">,</span>m<span class="token punctuation">;</span>
+    cin<span class="token operator">>></span>n<span class="token operator">>></span>m<span class="token punctuation">;</span>
     <span class="token keyword">long</span> <span class="token keyword">long</span> res<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
-    cin<span class="token operator">>></span>n<span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> cin<span class="token operator">>></span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">sort</span><span class="token punctuation">(</span>aa<span class="token punctuation">,</span>aa<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> cin<span class="token operator">>></span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">sort</span><span class="token punctuation">(</span>bb<span class="token punctuation">,</span>bb<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> cin<span class="token operator">>></span>cc<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
-    <span class="token function">sort</span><span class="token punctuation">(</span>cc<span class="token punctuation">,</span>cc<span class="token operator">+</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">long</span> <span class="token keyword">long</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span> cin<span class="token operator">>></span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>i<span class="token operator">&lt;=</span>n<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
     <span class="token punctuation">{</span>
-       <span class="token keyword">long</span> <span class="token keyword">long</span> t<span class="token operator">=</span><span class="token function">lower_bound</span><span class="token punctuation">(</span>aa<span class="token punctuation">,</span>aa<span class="token operator">+</span>n<span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span>aa<span class="token punctuation">;</span>
-       <span class="token keyword">long</span> <span class="token keyword">long</span> tt<span class="token operator">=</span><span class="token function">upper_bound</span><span class="token punctuation">(</span>cc<span class="token punctuation">,</span>cc<span class="token operator">+</span>n<span class="token punctuation">,</span>bb<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">-</span>cc<span class="token punctuation">;</span>
-       res<span class="token operator">+</span><span class="token operator">=</span>t<span class="token operator">*</span><span class="token punctuation">(</span>n<span class="token operator">-</span>tt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">=</span><span class="token punctuation">(</span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">+</span>aa<span class="token punctuation">[</span>i<span class="token number">-1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token operator">%</span>m<span class="token punctuation">;</span>
+        ss<span class="token punctuation">[</span>aa<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">%</span>m<span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
+    res<span class="token operator">+</span><span class="token operator">=</span>ss<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>i<span class="token operator">&lt;</span>m<span class="token punctuation">;</span>i<span class="token operator">++</span><span class="token punctuation">)</span>
+       res<span class="token operator">+</span><span class="token operator">=</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">*</span><span class="token punctuation">(</span>ss<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">;</span>
     cout<span class="token operator">&lt;&lt;</span>res<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
     <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
@@ -496,7 +493,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://yoursite.com/article/2725f22.html">http://yoursite.com/article/2725f22.html</a>
+                    <a href="http://yoursite.com/article/5be4a756.html">http://yoursite.com/article/5be4a756.html</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -701,72 +698,24 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;Previous</div>
+                <i class="far fa-dot-circle"></i>&nbsp;Current
+            </div>
             <div class="card">
-                <a href="/article/168f49bd.html">
+                <a href="/article/5be4a756.html">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="逆序对的数量">
+                        <img src="/medias/featureimages/82.jpg" class="responsive-img" alt="K倍区间">
                         
-                        <span class="card-title">逆序对的数量</span>
+                        <span class="card-title">K倍区间</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            题目给定一个长度为n的整数数列，请你计算数列中的逆序对的数量。逆序对的定义如下：对于数列的第 i 个和第 j 个元素，如果满足 i &lt; j 且 a[i] &gt; a[j]，则其为一个逆序对；否则不是。输入格式第一行包含整数n，表示数
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-23
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%8E%92%E5%BA%8F/" class="post-category">
-                                    排序
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
-                        <span class="chip bg-color">归并排序</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                Next&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/article/aa60e0cf.html">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="回文日期">
-                        
-                        <span class="card-title">回文日期</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            题目在日常生活中，通过年、月、日这三个要素可以表示出一个唯一确定的日期。牛牛习惯用 8 位数字表示一个日期，其中，前 4 位代表年份，接下来 2 位代表月份，最后 2 位代表日期。显然：一个日期只有一种表示方法，而两个不同的日期的表示方法不
+                            给定一个长度为 N 的数列，A1,A2,…AN，如果其中一段连续的子序列 Ai,Ai+1,…Aj 之和是 K 的倍数，我们就称这个区间 [i,j] 是 K倍区间。你能求出数列中总共有多少个 K倍区间吗？输入格式第一行包含两个整数 N和 K。
                         
                     </div>
                     <div class="publish-info">
@@ -785,11 +734,65 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
                     <a href="/tags/%E6%80%9D%E7%BB%B4/">
                         <span class="chip bg-color">思维</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                Next&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/article/9947c71c.html">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/131.jpg" class="responsive-img" alt="二分">
+                        
+                        <span class="card-title">二分</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            二分模板有两个
+  当我们将区间[l, r]划分成[l, mid]和[mid + 1, r]时，其更新操作是r = mid或者l = mid + 1;，计算mid时不需要加1。
+while (l &lt; r)
+    {
+        
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BA%8C%E5%88%86/" class="post-category">
+                                    二分
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BA%8C%E5%88%86/">
+                        <span class="chip bg-color">二分</span>
                     </a>
                     
                 </div>
