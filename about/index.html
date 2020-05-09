@@ -103,6 +103,17 @@
   
   <li class="hide-on-med-and-down nav-item">
     
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>Contact</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
     <a href="/friends" class="waves-effect waves-light">
       
       <i class="fas fa-address-book" style="zoom: 0.6;"></i>
@@ -188,6 +199,17 @@
 			    <i class="fa-fw fas fa-user-circle"></i>
 			
 			About
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
 		</a>
           
         </li>
@@ -560,7 +582,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"Trie树","value":2},{"name":"动态规划","value":3},{"name":"二分","value":2},{"name":"KMP","value":1},{"name":"蓝桥杯","value":19},{"name":"位运算","value":1},{"name":"离散化","value":1},{"name":"前缀和","value":1},{"name":"树状数组","value":1},{"name":"贪心","value":1},{"name":"并查集","value":2},{"name":"栈","value":2},{"name":"单链表","value":1},{"name":"堆","value":1},{"name":"大整数","value":3},{"name":"哈希","value":2},{"name":"排序","value":4},{"name":"差分","value":1},{"name":"双指针","value":2},{"name":"队列","value":2},{"name":"c++","value":1},{"name":"递归","value":3}],
+                data: [{"name":"动态规划","value":3},{"name":"KMP","value":1},{"name":"Trie树","value":2},{"name":"蓝桥杯","value":19},{"name":"二分","value":2},{"name":"位运算","value":1},{"name":"前缀和","value":1},{"name":"树状数组","value":1},{"name":"离散化","value":1},{"name":"贪心","value":1},{"name":"栈","value":2},{"name":"并查集","value":2},{"name":"单链表","value":1},{"name":"堆","value":1},{"name":"大整数","value":3},{"name":"哈希","value":2},{"name":"差分","value":1},{"name":"排序","value":4},{"name":"双指针","value":2},{"name":"队列","value":2},{"name":"c++","value":1},{"name":"递归","value":3}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -584,7 +606,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["模板","思维","二分","位运算","树状数组","大整数","枚举","递归","Trie树","并查集"]
+                data: ["模板","思维","二分","位运算","树状数组","大整数","枚举","递归","Trie树","线段树"]
             }
         ],
         yAxis: [
@@ -697,26 +719,8 @@
         <div class="tag-chips center-align">
             
             
-            <a href="/tags/Trie%E6%A0%91/">
-                <span class="chip center-align waves-effect waves-light chip-default">Trie树</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
-                <span class="chip center-align waves-effect waves-light chip-default">模板</span>
-            </a>
-            
-            
-            
             <a href="/tags/%E8%83%8C%E5%8C%85/">
                 <span class="chip center-align waves-effect waves-light chip-default">背包</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E4%BA%8C%E5%88%86/">
-                <span class="chip center-align waves-effect waves-light chip-default">二分</span>
             </a>
             
             
@@ -727,8 +731,26 @@
             
             
             
+            <a href="/tags/%E6%A8%A1%E6%9D%BF/">
+                <span class="chip center-align waves-effect waves-light chip-default">模板</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Trie%E6%A0%91/">
+                <span class="chip center-align waves-effect waves-light chip-default">Trie树</span>
+            </a>
+            
+            
+            
             <a href="/tags/%E6%80%9D%E7%BB%B4/">
                 <span class="chip center-align waves-effect waves-light chip-default">思维</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E4%BA%8C%E5%88%86/">
+                <span class="chip center-align waves-effect waves-light chip-default">二分</span>
             </a>
             
             
@@ -739,8 +761,8 @@
             
             
             
-            <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
-                <span class="chip center-align waves-effect waves-light chip-default">离散化</span>
+            <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
+                <span class="chip center-align waves-effect waves-light chip-default">线段树</span>
             </a>
             
             
@@ -757,6 +779,12 @@
             
             
             
+            <a href="/tags/%E7%A6%BB%E6%95%A3%E5%8C%96/">
+                <span class="chip center-align waves-effect waves-light chip-default">离散化</span>
+            </a>
+            
+            
+            
             <a href="/tags/%E8%B4%AA%E5%BF%83/">
                 <span class="chip center-align waves-effect waves-light chip-default">贪心</span>
             </a>
@@ -769,26 +797,20 @@
             
             
             
-            <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
-                <span class="chip center-align waves-effect waves-light chip-default">并查集</span>
-            </a>
-            
-            
-            
             <a href="/tags/%E5%8D%95%E8%B0%83%E6%A0%88/">
                 <span class="chip center-align waves-effect waves-light chip-default">单调栈</span>
             </a>
             
             
             
-            <a href="/tags/%E5%8D%95%E9%93%BE%E8%A1%A8/">
-                <span class="chip center-align waves-effect waves-light chip-default">单链表</span>
+            <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+                <span class="chip center-align waves-effect waves-light chip-default">并查集</span>
             </a>
             
             
             
-            <a href="/tags/%E6%A8%A1%E6%8B%9F/">
-                <span class="chip center-align waves-effect waves-light chip-default">模拟</span>
+            <a href="/tags/%E5%8D%95%E9%93%BE%E8%A1%A8/">
+                <span class="chip center-align waves-effect waves-light chip-default">单链表</span>
             </a>
             
             
@@ -805,26 +827,14 @@
             
             
             
+            <a href="/tags/%E6%A8%A1%E6%8B%9F/">
+                <span class="chip center-align waves-effect waves-light chip-default">模拟</span>
+            </a>
+            
+            
+            
             <a href="/tags/%E5%93%88%E5%B8%8C/">
                 <span class="chip center-align waves-effect waves-light chip-default">哈希</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91/">
-                <span class="chip center-align waves-effect waves-light chip-default">线段树</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
-                <span class="chip center-align waves-effect waves-light chip-default">快速排序</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
-                <span class="chip center-align waves-effect waves-light chip-default">动态规划</span>
             </a>
             
             
@@ -841,14 +851,20 @@
             
             
             
-            <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
-                <span class="chip center-align waves-effect waves-light chip-default">双指针</span>
+            <a href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+                <span class="chip center-align waves-effect waves-light chip-default">快速排序</span>
             </a>
             
             
             
-            <a href="/tags/%E9%98%9F%E5%88%97/">
-                <span class="chip center-align waves-effect waves-light chip-default">队列</span>
+            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+                <span class="chip center-align waves-effect waves-light chip-default">动态规划</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/">
+                <span class="chip center-align waves-effect waves-light chip-default">双指针</span>
             </a>
             
             
@@ -859,14 +875,26 @@
             
             
             
+            <a href="/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/">
+                <span class="chip center-align waves-effect waves-light chip-default">单调队列</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E9%98%9F%E5%88%97/">
+                <span class="chip center-align waves-effect waves-light chip-default">队列</span>
+            </a>
+            
+            
+            
             <a href="/tags/c/">
                 <span class="chip center-align waves-effect waves-light chip-default">c++</span>
             </a>
             
             
             
-            <a href="/tags/%E5%8D%95%E8%B0%83%E9%98%9F%E5%88%97/">
-                <span class="chip center-align waves-effect waves-light chip-default">单调队列</span>
+            <a href="/tags/%E6%9E%9A%E4%B8%BE/">
+                <span class="chip center-align waves-effect waves-light chip-default">枚举</span>
             </a>
             
             
@@ -879,12 +907,6 @@
             
             <a href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/">
                 <span class="chip center-align waves-effect waves-light chip-default">字符串</span>
-            </a>
-            
-            
-            
-            <a href="/tags/%E6%9E%9A%E4%B8%BE/">
-                <span class="chip center-align waves-effect waves-light chip-default">枚举</span>
             </a>
             
             
